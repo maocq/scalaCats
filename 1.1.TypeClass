@@ -10,7 +10,7 @@ val instanceTest: TestTrait = new TestTrait {
   override def returnHello(name: String) = s"Hello $name"
 }
 
-val hello = instanceTest.returnHello("mao") //Hello mao
+val hello = instanceTest.returnHello("mao") // hello: String = Hello mao
 
 
 /***
@@ -38,10 +38,10 @@ object Printable {
 }
 
 import PrintableInstances._
-Printable.myFormat("Hello")
+Printable.myFormat("Hello") // res0: String = _ Hello
 
 
-// MÃ©todo de extensiÃ³n para proporcionar una mejor sintaxis
+// Método de extensión para proporcionar una mejor sintaxis
 object PrintableSyntax {
   implicit class PrintOps[A](value: A) {
     def myFormat(implicit p: Printable[A]): String =
@@ -50,4 +50,4 @@ object PrintableSyntax {
 }
 
 import PrintableSyntax._
-"Hello".myFormat // "_ Hello
+"Hello".myFormat // res1: String = _ Hello
