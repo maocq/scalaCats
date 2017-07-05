@@ -1,7 +1,7 @@
 /**
   * Monoide
   * Un monoide para un tipo A es:
-  * - Una operaciÃ³n combinecon el tipo de(A, A) => A
+  * - Una operación combine con el tipo de(A, A) => A
   * - Un elemento empty de tipo A
   * Para todos los valores x, y y z, en A, combine debe ser asociativa y empty debe ser un elemento de identidad
   */
@@ -9,7 +9,13 @@
 
 /**
   * Semigrupo
-  * Un semigrupo de algÃºn tipo A, da cuenta de una sola operaciÃ³n (que llamaremos combine), que toma dos valores de tipo A, y devuelve un valor de tipo A.
+  * Un semigrupo de algún tipo A, da cuenta de una sola operación (que llamaremos combine), que toma dos valores de tipo A, y devuelve un valor de tipo A.
+  */
+
+
+/**
+  * Un Semigrupo representa una operación de suma o combinación.
+  * Un Monoide extiende de Semigrupo mediante la adición de una identidad o elemento de “cero”.
   */
 
 import cats.Monoid
