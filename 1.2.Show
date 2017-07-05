@@ -14,3 +14,4 @@ implicit val catShow = Show.show[Cat] { cat =>
 
 
 val print = Cat("Garfield", 35, "ginger and black").show
+// print: String = Garfield is a 35 year-old ginger and black cat.
