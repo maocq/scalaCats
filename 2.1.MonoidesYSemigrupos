@@ -1,0 +1,53 @@
+/**
+  * Monoide
+  * Un monoide para un tipo A es:
+  * - Una operación combinecon el tipo de(A, A) => A
+  * - Un elemento empty de tipo A
+  * Para todos los valores x, y y z, en A, combine debe ser asociativa y empty debe ser un elemento de identidad
+  */
+
+
+/**
+  * Semigrupo
+  * Un semigrupo de algún tipo A, da cuenta de una sola operación (que llamaremos combine), que toma dos valores de tipo A, y devuelve un valor de tipo A.
+  */
+
+import cats.Monoid
+import cats.instances.string._
+
+Monoid[String].combine("Hi ", "there") // res0: String = Hi there
+
+Monoid[String].empty // res1: String = ""
+
+import cats.Semigroup
+
+Semigroup[String].combine("Hi ", "there") // res2: String = Hi there
+
+
+/*
+Monoid Sintaxis
+  Sintaxis para el combine |+|
+*/
+import cats.syntax.semigroup._
+import cats.instances.int._
+
+val intResult = 1 |+| 2 |+| Monoid[Int].empty // intResult: Int = 3
+
+
+// Ejemplo
+case class Order(totalCost: Double, quantity: Double)
+
+implicit val monoid: Monoid[Order] = new Monoid[Order] {
+  def combine(o1: Order, o2: Order) =
+    Order(
+      o1.totalCost + o2.totalCost,
+      o1.quantity + o2.quantity
+    )
+
+  def empty = Order(0, 0)
+}
+
+Order(1,1) |+| Order(2,3) // res3: Order = Order(3.0,4.0)
+val ordenes = List( Order(1,0), Order(2,2), Order(3,3) )
+
+ordenes.foldLeft(Monoid[Order].empty)(_ |+| _) // res4: Order = Order(6.0,5.0)
