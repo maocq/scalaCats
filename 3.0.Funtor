@@ -1,7 +1,10 @@
 /**
   * Funtor
-  * Un funtor es un tipo F[A] con una operaciÃ³n map con el tipo (A => B) => F[B]
+  * Un funtor es un tipo F[A] con una operación map con el tipo (A => B) => F[B]
   * Option, List, Either, Future ...
+  *
+  * Un functor F[A] representa algunos datos (el tipo A) en un contexto (el tipo F)
+  * La operación map modifica los datos dentro, pero conserva la estructura del contexto circundante.
   */
 
 Option(123).map(_ * 2).map(_ + 4) // res4: Option[Int] = Some(250)
