@@ -1,0 +1,20 @@
+/**
+  * Type Class Variance
+  * Foo[A]es invariante en A.
+  *   Esto significa que no hay relación entre Foo[B]y Foo[C]no importa lo que la
+  *   relación de sub o super tipo está entre B y C.
+  * Foo[+A]es covariante en A
+  *   Si Ces un subtipo de B, Foo[C]es un subtipo de Foo[B].
+  * Foo[-A]es contravariante en A
+  *   Si Ces un supertipo de B, Foo[C]es un subtipo de Foo[B].
+  */
+
+import cats.syntax.option._
+
+Some(1) // res0: Some[Int] = Some(1)
+
+1.some // res1: Option[Int] = Some(1)
+
+None // res2: None.type = None
+
+none[Int] // res3: Option[Int] = None
