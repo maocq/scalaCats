@@ -1,0 +1,9 @@
+/**
+  * Funtor
+  * Un funtor es un tipo F[A] con una operación map con el tipo (A => B) => F[B]
+  * Option, List, Either, Future ...
+  */
+
+Option(123).map(_ * 2).map(_ + 4) // res4: Option[Int] = Some(250)
+
+Option(123).map(x => (x * 2) + 4) // res5: Option[Int] = Some(250)
