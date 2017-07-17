@@ -1,0 +1,13 @@
+/**
+  *  Sintaxis de la Mónada
+  *
+  *  cats.syntax.flatMap Proporciona sintaxis para flatMap;
+  *  cats.syntax.functor Proporciona sintaxis para map;
+  *  cats.syntax.applicative Proporciona sintaxis para pure.
+  */
+
+import cats.syntax.applicative._
+import cats.instances.option._
+
+
+1.pure[Option]  // res0: Option[Int] = Some(1)
