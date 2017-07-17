@@ -1,5 +1,5 @@
 /**
-  * CreaciÃ³n de instancias
+  * Creación de instancias
   */
 
 import cats.syntax.either._
@@ -13,3 +13,23 @@ for {
   y <- b
 } yield x*x + y*y
 // res6: scala.util.Either[String,Int] = Right(25)
+
+
+/**
+  * Ejemplo
+  */
+
+def countPositive(nums: List[Int]) =
+  nums.foldLeft(0.asRight[String]) { (accumulator, num) =>
+    if(num > 0) {
+      accumulator.map(_ + 1)
+    } else {
+      Left("Negative. Stopping!")
+    }
+  }
+
+countPositive(List(1, 2, 3))
+// res7: Either[String,Int] = Right(3)
+
+countPositive(List(1, -2, 3))
+// res8: Either[String,Int] = Left(Negative. Stopping!)
