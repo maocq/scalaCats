@@ -1,0 +1,15 @@
+/**
+  * Creación de instancias
+  */
+
+import cats.syntax.either._
+
+val a = 3.asRight[String] //a: Either[String,Int] = Right(3)
+
+val b = 4.asRight[String] //b: Either[String,Int] = Right(4)
+
+for {
+  x <- a
+  y <- b
+} yield x*x + y*y
+// res6: scala.util.Either[String,Int] = Right(25)
