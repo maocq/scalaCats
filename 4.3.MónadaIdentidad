@@ -1,0 +1,21 @@
+/**
+  * Mónada Identidad
+  *
+  */
+
+import cats.Id
+import cats.Monad
+
+"Dave" : Id[String] //res0: cats.Id[String] = Dave
+
+val a = Monad[Id].pure(3)  //a: cats.Id[Int] = 3
+
+val b = Monad[Id].flatMap(a)(_ + 1) //b: cats.Id[Int] = 4
+
+import cats.syntax.flatMap._
+import cats.syntax.functor._
+
+for {
+  x <- a
+  y <- b
+} yield x + y //res1: cats.Id[Int] = 7
