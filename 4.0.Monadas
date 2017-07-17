@@ -1,0 +1,21 @@
+/**
+  * Monadas
+  * Una mónada es un mecanismo de control para secuenciar cálculos
+  * El comportamiento de la mónada es formalmente capturado en dos operaciones:
+  *   Una operación pure con tipo A => F[A]
+  *   Una operación flatMap con tipo (F[A], A => F[B]) => F[B]
+  *
+  */
+
+/**
+  * Monadas en Cats
+  */
+
+import cats.Monad
+import cats.instances.option._
+
+val opt1 = Monad[Option].pure(3) // opt1: Option[Int] = Some(3)
+
+val opt2 = Monad[Option].flatMap(opt1)(a => Some(a + 2)) // opt2: Option[Int] = Some(5)
+
+val opt3 = Monad[Option].map(opt2)(a => 100 * a) // opt3: Option[Int] = Some(500)
