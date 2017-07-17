@@ -1,0 +1,26 @@
+/**
+  * Mapeo de funciones
+  *    Comenzar con X => A;
+  *    Suministrar una función A => B;
+  *    Volver X => B.
+  */
+
+import cats.instances.function._
+import cats.syntax.functor._
+
+val func1 = (x: Int) => x.toDouble //Int => Double = <function1>
+val func2 = (y: Double) => s"[${y.toString}]" //Double => String = <function1>
+
+val func3 = func1.map(func2)  //Int => String = <function1>
+
+func3(1) //String = [1.0]
+func2( func1( 1 ) ) //String = [1.0]
+
+
+
+
+
+val f = (x: Int) => x * 2
+val f2 = f andThen f
+
+f2(2) //Int = 8
