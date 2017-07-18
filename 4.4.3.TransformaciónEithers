@@ -1,0 +1,42 @@
+/**
+  * Transformación de Eithers
+  */
+
+import cats.syntax.either._
+
+"Error".asLeft[Int].getOrElse(0) //Int = 0
+
+"Error".asLeft[Int].orElse(2.asRight[String]) //Either[String,Int] = Right(2)
+
+
+/*
+El método ensure nos permite comprobar si un valor encapsulado satisface un predicado
+ */
+
+-1.asRight[String].ensure("Must be non-negative!")(_ > 0)
+//Either[String,Int] = Left(Must be non-negative!)
+
+
+/*
+recovery recoverWith
+*/
+
+"error".asLeft[String] recover {
+  case str: String =>
+    "Recovered from " + str
+}
+//Either[String,String] = Right(Recovered from error)
+
+"error".asLeft[String] recoverWith {
+  case str: String =>
+    Right("Recovered from " + str)
+}
+//Either[String,String] = Right(Recovered from error)
+
+
+/*
+El método swap nos permite intercambiar de izquierda a derecha
+*/
+
+123.asRight[String] //Either[String,Int] = Right(123)
+123.asRight[String].swap //scala.util.Either[Int,String] = Left(123)
