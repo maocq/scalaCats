@@ -1,0 +1,15 @@
+/**
+  * Writer
+  */
+
+import cats.syntax.writer._
+
+val b = 123.writer(Vector("msg1", "msg2", "msg3"))
+
+b.value
+//cats.Id[Int] = 123
+
+b.written
+//cats.Id[scala.collection.immutable.Vector[String]] = Vector(msg1, msg2, msg3)
+
+val (log, result) = b.run
