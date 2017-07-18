@@ -1,0 +1,25 @@
+/**
+  * Monada Eval
+  */
+
+import cats.Eval
+
+val ans = for {
+  a <- Eval.now    { println("Calculating A"); 40 }
+  b <- Eval.always { println("Calculating B"); 2  }
+} yield {
+  println("Adding A and B")
+  a + b
+}
+// Calculating A
+// ans: cats.Eval[Int] = cats.Eval$$anon$8@9284e40
+
+ans.value // first access
+// Calculating B
+// Adding A and B
+// res16: Int = 42
+
+ans.value // second access
+// Calculating B
+// Adding A and B
+// res17: Int = 42
