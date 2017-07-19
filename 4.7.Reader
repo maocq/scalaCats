@@ -1,0 +1,13 @@
+/**
+  * Reader
+  */
+import cats.data.Reader
+
+case class Cat(name: String, favoriteFood: String)
+
+val catName: Reader[Cat, String] =
+  Reader(cat => cat.name)
+// catName: cats.data.Reader[Cat,String] = Kleisli(<function1>)
+
+catName.run(Cat("Garfield", "lasagne"))
+//cats.Id[String] = Garfield
