@@ -1,0 +1,41 @@
+/**
+  * State
+  */
+import cats.data.State
+
+val a = State[Int, String] { state =>
+  (state, s"The state is $state")
+}
+
+val (state, result) = a.run(10).value
+// state: Int = 10
+// result: String = The state is 10
+
+val stateOnly = a.runS(10).value
+// stateOnly: Int = 10
+
+val resultOnly = a.runA(10).value
+// resultOnly: String = The state is 10
+
+
+/*
+Ejemplo
+ */
+val step1 = State[Int, String] { num =>
+  val ans = num + 1
+  (ans, s"Result of step1: $ans")
+}
+
+val step2 = State[Int, String] { num =>
+  val ans = num * 2
+  (ans, s"Result of step2: $ans")
+}
+
+val both = for {
+  a <- step1
+  b <- step2
+} yield (a, b)
+
+val (stateEnd, resultEnd) = both.run(20).value
+// stateEnd: Int = 42
+// resultEnd: (String, String) = (Result of step1: 21,Result of step2: 42)
